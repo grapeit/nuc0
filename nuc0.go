@@ -19,6 +19,6 @@ func led(c *gin.Context) {
 			"status": string(data),
 		})
 	} else {
-		c.String(500, error.Error())
+		c.String(501, error.Error())
 	}
 }
