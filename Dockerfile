@@ -1,9 +1,4 @@
 FROM scratch
-
-WORKDIR /app
-
-ADD nuc0 certificate.pem key.pem /app/
-
+ADD nuc0 certificate.pem key.pem /
 EXPOSE 3333
-
-CMD ["nuc0"]
+CMD ["/nuc0"]
