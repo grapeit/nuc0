@@ -1,8 +1,4 @@
 #!/bin/bash
 
-#Set this when you build for linux on other OS
-#OS=linux
-
-CGO_ENABLED=0 GOOS=$OS go build -a -installsuffix cgo -v -o nuc0 .
-
+CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -v -o nuc0 .
 docker build -t nuc0 .
