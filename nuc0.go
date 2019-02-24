@@ -9,7 +9,8 @@ func main() {
 	gin.SetMode(gin.DebugMode)
 	r := gin.Default()
 	r.GET("/status", ledStatus)
-	r.RunTLS(":3333", "certificate.pem", "key.pem")
+	//r.RunTLS("0.0.0.0:3333", "certificate.pem", "key.pem")
+	r.Run("0.0.0.0:3333")
 }
 
 func ledStatus(c *gin.Context) {
