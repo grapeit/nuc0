@@ -22,12 +22,9 @@ type colorByLoad struct {
 	brightness int
 }
 
-var blinkLoadThreshold = 4.0
-var blinkLedMode = "none"
-
 var colorsByLoad = []colorByLoad {
 	{0, "white", 80},
-	{0.02, "blue", 8},
+	{0.02, "blue", 10},
 	{0.05, "blue", 20},
 	{0.10, "blue", 40},
 	{0.15, "blue", 80},
@@ -37,6 +34,9 @@ var colorsByLoad = []colorByLoad {
 	{1.0, "pink", 60},
 	{0, "red", 80},
 }
+
+var blinkLoadThreshold = 4.0
+var blinkLedMode = "none"
 
 func init() {
 	cores := float64(runtime.NumCPU())
