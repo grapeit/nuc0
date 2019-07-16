@@ -87,6 +87,7 @@ func loadAverageMonitor() {
 		}
 		var color = getColorByLoad(load)
 		if color != prevColor {
+			fmt.Println(time.Now().Format(time.RFC822), "|", "load:", load, "|", "color:", color)
 			setRingColor(color)
 			prevColor = color
 		}
