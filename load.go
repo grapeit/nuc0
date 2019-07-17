@@ -58,7 +58,7 @@ func setRingColor(color ledColorConfig) {
 	cmd := fmt.Sprintf("ring,%d,%s,%s", color.brightness, color.blink, color.color)
 	err := ioutil.WriteFile(ledDriverFile, []byte(cmd), 0644)
 	if err != nil {
-		fmt.Println("set error:", err)
+		log("setRingColor error:", err)
 	}
 }
 
@@ -83,14 +83,20 @@ func loadAverageMonitor() {
 	for {
 		load, err := getLoadAverage()
 		if err != nil {
-			fmt.Println("getLoadAverage error", err)
-		}
-		var color = getColorByLoad(load)
-		if color != prevColor {
-			fmt.Println(time.Now().Format(time.RFC822), "|", "load:", load, "|", "color:", color)
-			setRingColor(color)
-			prevColor = color
+			log("getLoadAverage error:", err)
+		} else {
+			var color = getColorByLoad(load)
+			if color != prevColor {
+				log("load:", load, "|", "color:", color)
+				setRingColor(color)
+				prevColor = color
+			}
 		}
 		time.Sleep(loadFeedInterval)
 	}
+}
+
+func log(message ...interface{}) {
+	prefix := []interface{}{time.Now().Format(time.RFC1123), "|"}
+	fmt.Println(append(prefix, message...)...)
 }
