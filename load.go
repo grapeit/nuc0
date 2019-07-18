@@ -46,9 +46,9 @@ func init() {
 }
 
 func getColorByLoad(load float64) ledColorConfig {
-	for i := 0; i < len(colorsByLoad); i++ {
-		if load < colorsByLoad[i].load {
-			return colorsByLoad[i]
+	for _, i := range colorsByLoad {
+		if load < i.load {
+			return i
 		}
 	}
 	return colorsByLoad[len(colorsByLoad) - 1]
